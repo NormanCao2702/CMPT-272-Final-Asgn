@@ -1,0 +1,36 @@
+<table>
+    <tr>
+        <th (click)="sortLocation()">Location</th>
+        <th (click)="sortName()">Baddie's name</th>
+        <th (click)="sortDate()">Time Reported</th>
+        <th>Status</th>
+        <th>Retrieve</th>
+        <th>Delete</th>
+    </tr>
+    <tr>
+        *ngFor = "let r of report"
+    </tr>
+    <td>{{r.location}}</td>
+    <td>{{r.name}}</td>
+    <td>{{r.time_reported | date: "yyyy-MM-dd (h:mm a)"}}</td>
+    <td>
+        <span *ngIf ="r.status; then ins; else notins"></span>
+        <ng-template #ins>RESOLVED</ng-template>
+        <ng-template #notins>OPEN</ng-template>
+    </td>
+    <td>
+        <button
+            class="btn btn-outline-primary"
+            (click)="openDialog($event,r.id)">
+            MORE INFO
+        </button>
+    </td>
+    <td>
+        <button 
+            class="btn btn-outline-danger"
+            id="delete"
+            (click)="onDelete($event, r.id)">
+            DELETE
+        </button>
+    </td>
+</table>

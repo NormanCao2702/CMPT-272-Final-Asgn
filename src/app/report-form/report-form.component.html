@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+<!--  -->
+    <fieldset>
+        <legend>---------REPORT FORM---------</legend>
+        <input 
+            type="text"
+            name="name"
+            placeholder="Godzilla"
+            formControlName="MonsterName"
+        >
+        <br>
+        <input 
+            type="text"
+            name="location"
+            placeholder="SFU Burnaby"
+            formControlName="location"
+            list="locations"
+        >
+        <datalist id="locations">
+            <option *ngFor="let r of report" value="r.location"></option>
+        </datalist>
+        <br>
+        <input 
+            type="text"
+            name="WitnessInfo"
+            placeholder="Bobby"
+            formControlName="WitnessInfo"
+        >
+        <input 
+            type="text"
+            name="extra"
+            placeholder="Monster is attacking children"
+            formControlName ="extra"
+        >
+        <br>
+        <button class="btn btn-outline-primary" [disabled]="!form.valid">
+            SUBMIT
+        </button>
+    </fieldset>
+</form>
