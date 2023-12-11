@@ -1,1 +1,44 @@
-<p>more-info works!</p>
+<div class="main">
+    <button type="button" class="btn btn-outline-secondary h-25" (click)="back()">Back</button>
+    <div class="container">
+        <header class="head">
+            <h3>Report Detail</h3>
+        </header>
+
+        <div class="center">
+            <table class="table table-striped">
+            <tr>
+                <td><b>Baddie's Name:</b></td>
+                <td>{{report.data.monsterInfo}}</td>
+            </tr>
+            <tr>
+                <td><b>Location:</b></td>
+                <td>{{report.data.location}}</td>
+            </tr>
+            <tr>
+                <td><b>Reported By:</b></td>
+                <td>{{report.data.witnessInfo}}</td>
+            </tr>
+            <tr>
+                <td><b>Time:</b></td>
+                <td>{{report.data.date | date: "yyyy-MM-dd (h:mm a)"}}</td>
+            </tr>
+            <tr>
+                <td><b>Status:</b></td>
+                <td>
+                    <span *ngIf ="report.data.status; then ins; else notins"></span>
+                    <ng-template #ins>RESOLVED</ng-template>
+                    <ng-template #notins>OPEN</ng-template>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button *ngIf="!report.data.status" (click) = "updateStatus()" class="btn btn-outline-primary">Resolve the issue</button>
+                </td>
+                
+            </tr>
+            <tr>
+                <td><b>Extra:</b></td>
+                <td>{{report.data.extra }}</td>
+            </tr>
+            </table>
+        </div>
+    </div>
+</div>
