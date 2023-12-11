@@ -7,6 +7,10 @@ import { ReportFormComponent } from './report-form/report-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReportListMapComponent } from './report-list-map/report-list-map.component';
 import { MoreInfoComponent } from './more-info/more-info.component';
+import { RoutingModule } from './routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportContainerComponent } from './report-container/report-container.component';
 
 @NgModule({
@@ -20,7 +24,11 @@ import { ReportContainerComponent } from './report-container/report-container.co
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RoutingModule,
+    HttpClientModule, 
+    MatDialogModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
