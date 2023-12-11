@@ -1,40 +1,45 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-<!--  -->
-    <fieldset>
-        <legend>---------REPORT FORM---------</legend>
-        <input 
-            type="text"
-            name="name"
-            placeholder="Godzilla"
-            formControlName="MonsterName"
-        >
-        <br>
-        <input 
-            type="text"
-            name="location"
-            placeholder="SFU Burnaby"
-            formControlName="location"
-            list="locations"
-        >
-        <datalist id="locations">
-            <option *ngFor="let r of report" value="r.location"></option>
-        </datalist>
-        <br>
-        <input 
-            type="text"
-            name="WitnessInfo"
-            placeholder="Bobby"
-            formControlName="WitnessInfo"
-        >
-        <input 
-            type="text"
-            name="extra"
-            placeholder="Monster is attacking children"
-            formControlName ="extra"
-        >
-        <br>
-        <button class="btn btn-outline-primary" [disabled]="!form.valid">
-            SUBMIT
-        </button>
-    </fieldset>
-</form>
+<form [formGroup]="form" >
+    <!--submit = refreshing the page, using onSubmit to the button  -->
+        <fieldset>
+            <legend>---------REPORT FORM---------</legend>
+            <input 
+                type="text"
+                name="MonsterName"
+                placeholder="Monster Name"
+                formControlName="MonsterName"
+    
+            />
+            <!-- [(ngModel)]="name" -->
+            <!-- <p>Welcome {{name}}</p> -->
+            <br>
+            <input 
+                type="text"
+                name="location"
+                placeholder="CLICK ON THE MAPP!!"
+                formControlName="location"
+                list="locations"
+            />
+            <datalist id="locations">
+                <option *ngFor="let location of locations" [value]="location"></option>
+            </datalist>
+            <br>
+            <input 
+                type="text"
+                name="WitnessInfo"
+                placeholder="Witness Information"
+                formControlName="WitnessInfo"
+            />
+            <br>
+            <input 
+                type="text"
+                name="extra"
+                placeholder="Extra information"
+                formControlName ="extra"
+            />
+            <br>
+            <button class="btn btn-outline-primary" [disabled]="!form.valid" (click)="onSubmit()">
+                SUBMIT
+            </button>
+        </fieldset>
+    </form>
+    
