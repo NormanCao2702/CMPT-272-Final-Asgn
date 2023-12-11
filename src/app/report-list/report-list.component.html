@@ -4,33 +4,42 @@
         <th (click)="sortName()">Baddie's name</th>
         <th (click)="sortDate()">Time Reported</th>
         <th>Status</th>
-        <th>Retrieve</th>
+        <th>More Info</th>
         <th>Delete</th>
     </tr>
-    <tr>
-        *ngFor = "let r of report"
+    <tr
+    *ngFor = "let r of reports">
+    
+        <td>{{r.data.location}}</td>
+        <td>{{r.data.monsterInfo}}</td>
+        <td>{{r.data.date | date: "yyyy-MM-dd (h:mm a)"}}</td>
+        <td>
+            <span *ngIf ="r.data.status; then ins; else notins"></span>
+            <ng-template #ins>RESOLVED</ng-template>
+            <ng-template #notins>OPEN</ng-template>
+        </td>
+        <td>
+            <button
+                class="btn btn-outline-info"
+                (click)="moreInfo(r)"
+                >
+                MORE INFO
+            </button>
+        </td>
+        <td>
+            <button 
+                class="btn btn-outline-danger"
+                id="delete"
+                (click)="deleteReport(r.data.id, r.data.location)">
+                DELETE
+            </button>
+        </td>
     </tr>
-    <td>{{r.location}}</td>
-    <td>{{r.name}}</td>
-    <td>{{r.time_reported | date: "yyyy-MM-dd (h:mm a)"}}</td>
-    <td>
-        <span *ngIf ="r.status; then ins; else notins"></span>
-        <ng-template #ins>RESOLVED</ng-template>
-        <ng-template #notins>OPEN</ng-template>
-    </td>
-    <td>
-        <button
-            class="btn btn-outline-primary"
-            (click)="openDialog($event,r.id)">
-            MORE INFO
-        </button>
-    </td>
-    <td>
-        <button 
-            class="btn btn-outline-danger"
-            id="delete"
-            (click)="onDelete($event, r.id)">
-            DELETE
-        </button>
-    </td>
 </table>
+<button (click)="toggleReportForm()" class="btn btn-outline-primary w-100">CREATE NUISANCE</button>
+
+<div *ngIf="showReportForm">
+  <!-- Include your report form component here -->
+  <app-report-form></app-report-form>
+</div>
+
